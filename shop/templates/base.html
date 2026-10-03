@@ -1,0 +1,16 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Healthify</title>
+  <link rel="stylesheet" href="{% static 'shop/style.css' %}">
+</head>
+<body>
+  <div class="header">
+    <a class="brand" href="{% url 'home' %}"><h1>Healthify</h1></a>
+    <a class="navButton" href="{% url 'cart' %}">Cart: {{ cart_count }} Items</a>
+  </div>
+  <main>{% block content %}{% endblock %}</main>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="Heading">Your Cart</h2>
+
+{% if items %}
+<div class="prodList">
+  {% for i in items %}
+  <div class="product1">
+    <img src="{{ i.product.image_url }}" class="imgg" alt="{{ i.product.name }}">
+    <p class="pname">{{ i.product.name }}</p>
+    <p class="pmeta">₹{{ i.product.price }} each | ₹{{ i.subtotal }}</p>
+    <div class="qty">
+      <form method="post" action="{% url 'cart_change' i.product.pk 'minus' %}">{% csrf_token %}<button type="submit" class="btn outline" aria-label="Decrease quantity">-</button></form>
+      <span class="qnum">{{ i.qty }} Quantity</span>
+      <form method="post" action="{% url 'cart_change' i.product.pk 'plus' %}">{% csrf_token %}<button type="submit" class="btn outline" aria-label="Increase quantity">+</button></form>
+    </div>
+    <form method="post" action="{% url 'cart_change' i.product.pk 'remove' %}">{% csrf_token %}<button type="submit" class="btn outline">Remove</button></form>
+  </div>
+  {% endfor %}
+</div>
+
+<p class="totalLine">Total: ₹{{ total }}</p>
+<div class="buttons">
+  <form method="post" action="{% url 'place_order' %}">{% csrf_token %}<button type="submit" class="btn">Place Order</button></form>
+  <a class="btn outline" href="{% url 'home' %}">Home Page</a>
+</div>
+{% else %}
+<p>Your cart is empty.</p>
+<p class="buttons"><a class="btn" href="{% url 'home' %}">Home Page</a></p>
+{% endif %}
+{% endblock %}

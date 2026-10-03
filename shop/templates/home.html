@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="Heading">Natural Foods</h2>
+
+<form method="get" class="filters">
+  <input type="search" name="q" value="{{ q }}" placeholder="Search products" aria-label="Search products">
+  <select name="category" aria-label="Category">
+    <option value="">All categories</option>
+    {% for c in categories %}
+    <option value="{{ c }}" {% if c == category %}selected{% endif %}>{{ c }}</option>
+    {% endfor %}
+  </select>
+  <select name="sort" aria-label="Sort by price">
+    <option value="">Sort by price</option>
+    <option value="low" {% if sort == "low" %}selected{% endif %}>Lowest to highest</option>
+    <option value="high" {% if sort == "high" %}selected{% endif %}>Highest to lowest</option>
+  </select>
+  <button type="submit" class="btn">Apply</button>
+  {% if q or category or sort %}<a class="btn outline" href="{% url 'home' %}">Clear</a>{% endif %}
+</form>
+
+{% if products %}
+<div class="prodList">
+  {% for p in products %}
+  <div class="product1">
+    <img src="{{ p.image_url }}" class="imgg" alt="{{ p.name }}">
+    <p class="pname">{{ p.name }}</p>
+    <p class="pmeta">{{ p.category }} | ₹{{ p.price }}</p>
+    <form method="post" action="{% url 'cart_add' p.pk %}">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.get_full_path }}">
+      <button type="submit" class="btn">Add to Cart</button>
+    </form>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>No products found. Try a different search or filter.</p>
+{% endif %}
+{% endblock %}

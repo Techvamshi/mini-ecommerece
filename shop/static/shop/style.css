@@ -1,0 +1,44 @@
+* { box-sizing: border-box; padding: 0; margin: 0; }
+body { background: #fff; color: #000; font-family: Georgia, "Times New Roman", serif; line-height: 1.5; }
+a { color: #000; }
+main { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+.header { background: #000; color: #fff; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 24px; }
+.header a { color: #fff; text-decoration: none; }
+.navButton { padding: 10px 20px; background: #fff; color: #000 !important; border: 2px solid #fff; font-weight: bold; }
+.navButton:hover { background: #000; color: #fff !important; }
+
+.Heading { font-size: 1.75rem; margin-bottom: 16px; border-bottom: 3px solid #000; padding-bottom: 6px; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.filters input { flex: 2; min-width: 200px; }
+.filters select { flex: 1; min-width: 160px; }
+input, select { padding: 9px; border: 2px solid #000; background: #fff; color: #000; font: inherit; border-radius: 0; }
+
+.prodList { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+.product1 { border: 3px solid #000; box-shadow: 6px 6px 0 #000; padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+.imgg { width: 100%; height: 180px; object-fit: cover; border: 2px solid #000; background: #fff; }
+.pname { font-size: 1.3rem; font-weight: bold; }
+.pmeta { font-size: 1rem; }
+
+.btn { display: inline-block; background: #000; color: #fff; border: 2px solid #000; padding: 9px 18px; font: inherit; font-weight: bold; text-decoration: none; cursor: pointer; border-radius: 0; }
+.btn:hover { background: #fff; color: #000; }
+.btn.outline { background: #fff; color: #000; }
+.btn.outline:hover { background: #000; color: #fff; }
+.buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+
+.qty { display: flex; align-items: center; gap: 12px; }
+.qnum { min-width: 100px; font-weight: bold; }
+.totalLine { font-size: 1.5rem; font-weight: bold; margin-top: 24px; border-top: 3px solid #000; padding-top: 12px; }
+.successDiv { display: flex; flex-direction: column; gap: 12px; }
+
+:focus-visible { outline: 3px dashed #000; outline-offset: 2px; }
+.header :focus-visible { outline-color: #fff; }
+
+@media (max-width: 600px) {
+  main { padding: 20px 16px; }
+  .header { padding: 12px 16px; }
+  .prodList { grid-template-columns: 1fr; }
+  .filters .btn { flex: 1; text-align: center; }
+}
+input:focus-visible, select:focus-visible { outline: none; }
